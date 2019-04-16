@@ -43,22 +43,24 @@ app.get('', (req,res) => {
     })
 })
 
-// method 1
-// app.get('/', (req, res) => {
-//     db.data().then((values) => {
-//         res.render('index', {
-//             title: 'Products',
-//             products: values
-//         })
-//         //console.log(values)
-//     })   
-// })
+app.get('/product/:id', (req, res) => {
 
+    //console.log(req.params.id)
+    //console.log(req.rawHeaders[1])
+    // Product.find({ _id: req.params}, (error, data) => {
+    //     console.log(data)
+    // })
 
-// app.get('/product/:id', (req,res) => {
-//     console.log(req.params)
-//     db.finddata(req.params).then((value) => {
-//         console.log(value)
-//     })
-// })
+    Product.findById({ _id: req.params.id}).then((value) => {
+        res.render('index1', {
+            product: value
+        })
+    })
+})
 
+hbs.registerHelper('splitSizes', (sizes) => {
+    //console.log(sizes)
+    var values = sizes.split(',')
+
+    return values
+})

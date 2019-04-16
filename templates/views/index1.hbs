@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>product</title>
+    <title>{{product.name}}</title>
     <link rel="icon" href="/img/weather.png" />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,31 +11,30 @@
 </head>
 
 <body class="container">
-    <h3 class="h3">{{title}} </h3>
-    <div class="row">
-        {{#each products}}
-        <div class="col-md-3 col-sm-6">
+    <h3 class="h3">{{product.name}} </h3>
+    <div class="col-md-3 col-sm-6">
             <div class="product-grid2">
                 <div class="product-image2">
                     <a href="#">
-                        <img class="pic-1" src="{{image}}">
-                        <img class="pic-2" src="{{image}}">
+                        <img class="pic-1" src="../{{product.image}}">
+                        <img class="pic-2" src="../{{product.image}}">
                     </a>
-                    <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <a class="add-to-cart" href="/product/{{_id}}">check more</a>
+                    <a class="add-to-cart" href="#">Add to cart</a>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">{{name}}</a></h3>
-                    <span class="price">{{price}}</span>
+                    <h3 class="title">{{product.name}}</h3>
+                    <span class="color">{{product.color}}</span>
+                    <span class="sizes">
+                        <div>
+                            {{#each (splitSizes product.sizes) as |valueSize| }}
+                                <a href='#'>{{valueSize}}</a>
+                            {{/each}}
+                        </div>
+                    </span>
+                    <span class="price">{{product.price}}</span>
                 </div>
             </div>
         </div>
-        {{/each}}
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
